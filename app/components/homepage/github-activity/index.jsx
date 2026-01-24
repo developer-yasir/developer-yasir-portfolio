@@ -1,6 +1,6 @@
 // @flow strict
 "use client";
-import GitHubCalendar from 'react-github-calendar';
+import { GitHubCalendar } from 'react-github-calendar';
 import { personalData } from '@/utils/data/personal-data';
 
 function GitHubActivity() {
