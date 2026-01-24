@@ -6,7 +6,7 @@ import BlogCard from "../components/homepage/blog/blog-card";
 async function getBlogs() {
   const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`, {
     headers: {
-      'api-key': process.env.DEV_TO_API_KEY,
+      ...(process.env.DEV_TO_API_KEY && { 'api-key': process.env.DEV_TO_API_KEY }),
     }
   })
 
