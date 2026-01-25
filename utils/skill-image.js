@@ -19,6 +19,7 @@ import deno from '../app/assets/svg/skills/deno.svg';
 import django from '../app/assets/svg/skills/django.svg';
 import docker from '../app/assets/svg/skills/docker.svg';
 import fastify from '../app/assets/svg/skills/fastify.svg';
+import expressJS from '../app/assets/svg/skills/express.svg';
 import figma from '../app/assets/svg/skills/figma.svg';
 import firebase from '../app/assets/svg/skills/firebase.svg';
 import flutter from '../app/assets/svg/skills/flutter.svg';
@@ -44,6 +45,7 @@ import microsoftoffice from '../app/assets/svg/skills/microsoftoffice.svg';
 import mongoDB from '../app/assets/svg/skills/mongoDB.svg';
 import mysql from '../app/assets/svg/skills/mysql.svg';
 import nextJS from '../app/assets/svg/skills/nextJS.svg';
+import nodeJS from '../app/assets/svg/skills/node.svg';
 import nginx from '../app/assets/svg/skills/nginx.svg';
 import numpy from '../app/assets/svg/skills/numpy.svg';
 import nuxtJS from '../app/assets/svg/skills/nuxtJS.svg';
@@ -216,6 +218,10 @@ export const skillsImage = (skill) => {
       return blender;
     case 'fastify':
       return fastify;
+    case 'express js':
+      return expressJS;
+    case 'node js':
+      return nodeJS;
     case 'figma':
       return figma;
     case 'flutter':
