@@ -1,44 +1,94 @@
-// @flow strict
-import Link from "next/link";
+"use client";
 
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 function Navbar() {
   return (
     <nav className="sticky top-0 z-[9999] bg-[#0d1224]/50 backdrop-blur-md pointer-events-auto">
-      <div className="relative flex items-center justify-between py-5">
-        <div className="flex flex-shrink-0 items-center">
+      <div className="relative flex items-center py-5">
+        {/* Logo - Left Side (Expanded to push menu to center) */}
+        <div className="flex flex-1 items-center justify-start">
           <Link
             href="/"
-            className=" text-[#16f2b3] text-3xl font-bold">
+            className="text-[#16f2b3] text-2xl lg:text-3xl font-bold whitespace-nowrap">
             YASIR RAEES
           </Link>
         </div>
 
-        <ul className="mt-4 flex h-screen max-h-0 w-full flex-col items-start text-sm opacity-0 md:mt-0 md:h-auto md:max-h-screen md:w-auto md:flex-row md:space-x-1 md:border-0 md:opacity-100" id="navbar-default">
-          <li>
-            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#about">
-              <div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">ABOUT</div>
+        {/* Menu Items - Absolute Center (Visible on Desktop) */}
+        <div className="hidden md:flex flex-shrink-0 items-center justify-center">
+          <ul className="flex items-center space-x-1 lg:space-x-4 text-sm font-medium" id="navbar-default">
+            {/* ... link items ... */}
+            <li>
+              <Link className="block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 text-white hover:text-[#16f2b3]" href="/#about">
+                ABOUT
+              </Link>
+            </li>
+            <li>
+              <Link className="block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 text-white hover:text-[#16f2b3]" href="/#experience">
+                EXPERIENCE
+              </Link>
+            </li>
+            <li>
+              <Link className="block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 text-white hover:text-[#16f2b3]" href="/#skills">
+                SKILLS
+              </Link>
+            </li>
+            <li>
+              <Link className="block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 text-white hover:text-[#16f2b3]" href="/#projects">
+                PROJECTS
+              </Link>
+            </li>
+            <li>
+              <Link className="block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 text-white hover:text-[#16f2b3]" href="/#services">
+                SERVICES
+              </Link>
+            </li>
+            <li>
+              <Link className="block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 text-white hover:text-[#16f2b3]" href="/#education">
+                EDUCATION
+              </Link>
+            </li>
+            <li>
+              <Link className="block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 text-white hover:text-[#16f2b3]" href="/blog">
+                BLOGS
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Contact Button - Right Side (Animated) */}
+        <div className="flex flex-1 items-center justify-end">
+          <motion.div
+            animate={{
+              scale: [1, 1.05, 1],
+              boxShadow: ["0 0 0px rgba(16,185,129,0)", "0 0 20px rgba(16,185,129,0.3)", "0 0 0px rgba(16,185,129,0)"]
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Link
+              className="relative group overflow-hidden flex items-center gap-1 rounded-full bg-gradient-to-r from-green-400 to-emerald-600 px-4 py-2 lg:px-6 lg:py-2.5 text-xs lg:text-sm font-extrabold text-[#0d1224] transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl"
+              href="/#contact"
+            >
+              {/* Shimmer Effect */}
+              <motion.div
+                animate={{ x: ["-100%", "200%"] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-20"
+              />
+
+              <span className="relative z-10 uppercase tracking-widest">Hire Me</span>
             </Link>
-          </li>
-          <li>
-            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#experience"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">EXPERIENCE</div></Link>
-          </li>
-          <li>
-            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#skills"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">SKILLS</div></Link>
-          </li>
-          <li>
-            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#education"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">EDUCATION</div></Link>
-          </li>
-          <li>
-            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/blog"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">BLOGS</div></Link>
-          </li>
-          <li>
-            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#projects"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">PROJECTS</div></Link>
-          </li>
-        </ul>
+          </motion.div>
+        </div>
       </div>
     </nav>
   );
-};
+}
 
 export default Navbar;

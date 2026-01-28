@@ -1,40 +1,47 @@
-// @flow strict
+import { personalData } from '@/utils/data/personal-data';
 import Link from 'next/link';
-import { CgGitFork } from "react-icons/cg";
-import { IoStar } from "react-icons/io5";
+import { SiFramer, SiNextdotjs, SiTailwindcss } from "react-icons/si";
 
 function Footer() {
   return (
-    <div className="relative border-t bg-[#0d1224] border-[#353951] text-white">
-      <div className="mx-auto px-6 sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] py-6 lg:py-10">
-        <div className="flex justify-center -z-40">
-          <div className="absolute top-0 h-[1px] w-1/2  bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
-        </div>
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <p className="text-sm">
-            © Developer Portfolio by <Link target="_blank" href="https://www.linkedin.com/in/developer-yasir/" className="text-[cyan-400]">Yasir Raees</Link>
-          </p>
-          <div className="flex items-center gap-5">
-            <Link
-              target="_blank"
-              href="https://github.com/said7388/developer-portfolio"
-              className="flex items-center gap-2 uppercase hover:text-[cyan-400]"
-            >
-              <IoStar />
-              <span>Star</span>
-            </Link>
-            <Link
-              target="_blank"
-              href="https://github.com/said7388/developer-portfolio/fork"
-              className="flex items-center gap-2 uppercase hover:text-[cyan-400]"
-            >
-              <CgGitFork />
-              <span>Fork</span>
-            </Link>
+    <footer className="relative bg-[#0d1224] border-t border-white/10">
+      {/* Subtle background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-pink-500/50 to-transparent" />
+
+      <div className="mx-auto px-6 sm:px-12 lg:max-w-7xl py-12">
+        {/* Bottom Section: Copyright & Tech Stack */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 border-t border-white/5 pt-12">
+
+          <div className="order-2 md:order-1 text-center md:text-left">
+            <p className="text-gray-400 text-sm">
+              © {new Date().getFullYear()} <span className="text-white font-bold">{personalData.name}</span>. All rights reserved.
+            </p>
+            <p className="text-xs text-gray-500 mt-2">
+              Designed & Developed with Passion.
+            </p>
           </div>
+
+          <div className="order-1 md:order-2 flex flex-col items-center md:items-end gap-3">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">Built With</span>
+            <div className="flex items-center gap-6 text-gray-400">
+              <div className="group flex items-center gap-2 transition-colors hover:text-white">
+                <SiNextdotjs size={20} />
+                <span className="text-xs font-semibold">Next.js</span>
+              </div>
+              <div className="group flex items-center gap-2 transition-colors hover:text-[#38bdf8]">
+                <SiTailwindcss size={20} />
+                <span className="text-xs font-semibold">Tailwind</span>
+              </div>
+              <div className="group flex items-center gap-2 transition-colors hover:text-pink-500">
+                <SiFramer size={20} />
+                <span className="text-xs font-semibold">Framer</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-    </div >
+    </footer>
   );
 };
 

@@ -11,27 +11,7 @@ import GitHubActivity from "./components/homepage/github-activity";
 
 import Services from "./components/homepage/services";
 
-async function getData() {
-  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`, {
-    headers: {
-      ...(process.env.DEV_TO_API_KEY && { 'api-key': process.env.DEV_TO_API_KEY }),
-    }
-  })
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
-
-  const data = await res.json();
-
-  const filtered = data.filter((item) => item?.cover_image || item?.social_image);
-
-  return filtered;
-};
-
-export default async function Home() {
-  const blogs = await getData();
-
+export default function Home() {
   return (
     <div suppressHydrationWarning >
       <HeroSection />
@@ -42,7 +22,7 @@ export default async function Home() {
       <GitHubActivity />
       <Services />
       <Education />
-      <Blog blogs={blogs} />
+      <Blog />
       <ContactSection />
     </div>
   )
