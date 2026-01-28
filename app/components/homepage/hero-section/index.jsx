@@ -1,187 +1,138 @@
-// @flow strict
+"use client";
 
 import { personalData } from "@/utils/data/personal-data";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { BsGithub, BsLinkedin } from "react-icons/bs";
-import { FaFacebook, FaTwitterSquare } from "react-icons/fa";
-import { MdDownload } from "react-icons/md";
-import { RiContactsFill } from "react-icons/ri";
-import { SiLeetcode } from "react-icons/si";
-
-import TypingAnimation from "../../helper/typing-animation";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 function HeroSection() {
+  const techStack = [
+    { name: "React", color: "text-cyan-400" },
+    { name: "Node.js", color: "text-green-500" },
+    { name: "MongoDB", color: "text-emerald-500" },
+    { name: "Next.js", color: "text-white" },
+    { name: "Tailwind", color: "text-sky-400" },
+  ];
+
   return (
-    <section className="relative flex flex-col items-center justify-between py-4 lg:py-12">
-      <Image
-        src="/hero.svg"
-        alt="Hero"
-        width={1572}
-        height={795}
-        className="absolute -top-[98px] -z-10"
+    <section className="relative min-h-[calc(100vh-80px)] flex items-center justify-center bg-[#0d1224] py-8 lg:py-12 px-2 overflow-hidden">
+      {/* Background Decorative Elements - Ultra-optimized */}
+      <motion.div
+        animate={{ opacity: [0.2, 0.4, 0.2] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-20 left-10 w-64 h-64 bg-pink-500/10 blur-[40px] rounded-full pointer-events-none"
+      />
+      <motion.div
+        animate={{ opacity: [0.2, 0.4, 0.2] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-20 right-10 w-96 h-96 bg-violet-600/10 blur-[50px] rounded-full pointer-events-none"
       />
 
-      <div className="grid grid-cols-1 items-start lg:grid-cols-2 lg:gap-12 gap-y-8">
-        <div className="order-2 lg:order-1 flex flex-col items-start justify-center p-2 pb-20 md:pb-10 lg:pt-10">
-          <h1 className="text-3xl font-bold leading-10 text-white md:font-extrabold lg:text-[2.6rem] lg:leading-[3.5rem]">
-            Hello, <br />
-            This is {' '}
-            <span className=" text-pink-500">{personalData.name}</span>
-            {` , I'm `}
-            <TypingAnimation texts={["MERN Stack Developer", "Software Engineer", "Problem Solver"]} />
-            .
-          </h1>
+      <div className="container mx-auto max-w-8xl relative z-10">
+        <div className="relative bg-[#1a2238]/60 border border-white/10 rounded-[48px] p-6 md:p-12 lg:p-16 shadow-2xl overflow-hidden">
 
-          <div className="my-12 flex items-center gap-5">
-            <Link
-              href={personalData.github}
-              target='_blank'
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <BsGithub size={30} />
-            </Link>
-            <Link
-              href={personalData.linkedIn}
-              target='_blank'
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <BsLinkedin size={30} />
-            </Link>
-            <Link
-              href={personalData.facebook}
-              target='_blank'
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <FaFacebook size={30} />
-            </Link>
-            <Link
-              href={personalData.leetcode}
-              target='_blank'
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <SiLeetcode size={30} />
-            </Link>
-            <Link
-              href={personalData.twitter}
-              target='_blank'
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <FaTwitterSquare size={30} />
-            </Link>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center relative z-10">
 
-          <div className="flex items-center gap-3">
-            <Link href="#contact" className="bg-gradient-to-r to-pink-500 from-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-pink-500 hover:to-violet-600">
-              <button className="px-3 text-xs md:px-8 py-3 md:py-4 bg-[#0d1224] rounded-full border-none text-center md:text-sm font-medium uppercase tracking-wider text-[#ffff] no-underline transition-all duration-200 ease-out  md:font-semibold flex items-center gap-1 hover:gap-3 hover:animate-pulse">
-                <span>Contact me</span>
-                <RiContactsFill size={16} />
-              </button>
-            </Link>
+            {/* Left Content Column */}
+            <div className="lg:col-span-7 order-2 lg:order-1">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="h-[2px] w-12 bg-pink-500" />
+                  <span className="text-sm font-bold uppercase tracking-[0.3em] text-pink-500">{personalData.designation.split('|')[0]}</span>
+                </div>
 
-            <Link className="flex items-center gap-1 hover:gap-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-3 md:px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out hover:text-white hover:no-underline md:font-semibold" role="button" target="_blank" href={personalData.resume}
-            >
-              <span>Get Resume</span>
-              <MdDownload size={16} />
-            </Link>
-          </div>
+                <h1 className="text-5xl md:text-7xl xl:text-8xl font-black text-white mb-8 tracking-tighter leading-[0.95]">
+                  I Craft <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-violet-500 to-indigo-500 italic">Scalable</span> <br />
+                  Systems.
+                </h1>
 
-        </div>
-        <div className="order-1 lg:order-2 from-[#0d1224] border-[#1b2c68a0] relative rounded-lg border bg-gradient-to-r to-[#0a0d37]">
-          <div className="flex flex-row">
-            <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-pink-500 to-violet-600"></div>
-            <div className="h-[1px] w-full bg-gradient-to-r from-violet-600 to-transparent"></div>
-          </div>
-          <div className="px-4 lg:px-8 py-5">
-            <div className="flex flex-row space-x-2">
-              <div className="h-3 w-3 rounded-full bg-red-400"></div>
-              <div className="h-3 w-3 rounded-full bg-orange-400"></div>
-              <div className="h-3 w-3 rounded-full bg-green-200"></div>
+                <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-xl leading-relaxed">
+                  Hi, I'm <span className="text-white font-bold">{personalData.name}</span>. I build robust MERN stack applications that bridge the gap between performance and user experience.
+                </p>
+
+                {/* Social Ecosystem - Glowing Icons */}
+                <div className="flex items-center gap-4 mb-12">
+                  <Link
+                    href={personalData.github}
+                    target="_blank"
+                    className="group relative p-3 bg-white/5 border border-white/10 rounded-xl transition-all hover:scale-110 active:scale-95"
+                  >
+                    <div className="absolute inset-0 bg-pink-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity rounded-xl" />
+                    <FaGithub className="relative z-10 text-white group-hover:text-pink-500 transition-colors" size={24} />
+                  </Link>
+                  <Link
+                    href={personalData.linkedIn}
+                    target="_blank"
+                    className="group relative p-3 bg-white/5 border border-white/10 rounded-xl transition-all hover:scale-110 active:scale-95"
+                  >
+                    <div className="absolute inset-0 bg-violet-600/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity rounded-xl" />
+                    <FaLinkedin className="relative z-10 text-white group-hover:text-violet-400 transition-colors" size={24} />
+                  </Link>
+                  {/* Additional social items can be added here if defined in personalData */}
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-6">
+                  <Link href="#contact" className="group relative px-10 py-5 bg-white text-[#0d1224] font-black rounded-2xl hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2">
+                    <span className="relative z-10">Let's Connect</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-violet-600 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+                    <span className="relative z-10 group-hover:text-white transition-colors">→</span>
+                  </Link>
+
+                  <Link
+                    href={personalData.resume}
+                    target="_blank"
+                    className="px-10 py-5 border border-white/20 text-white font-bold rounded-2xl hover:bg-white/5 hover:border-white/40 transition-all flex items-center justify-center gap-2"
+                  >
+                    Download CV
+                  </Link>
+                </div>
+              </motion.div>
             </div>
-          </div>
-          <div className="overflow-hidden border-t-[2px] border-indigo-900 px-4 lg:px-8 py-4 lg:py-8">
-            <code className="font-mono text-xs md:text-sm lg:text-base">
-              <div className="blink">
-                <span className="mr-2 text-pink-500">const</span>
-                <span className="mr-2 text-white">coder</span>
-                <span className="mr-2 text-pink-500">=</span>
-                <span className="text-gray-400">{'{'}</span>
-              </div>
-              <div>
-                <span className="ml-4 lg:ml-8 mr-2 text-white">name:</span>
-                <span className="text-gray-400">{`'`}</span>
-                <span className="text-amber-300">Yasir Raees</span>
-                <span className="text-gray-400">{`',`}</span>
-              </div>
-              <div className="ml-4 lg:ml-8 mr-2">
-                <span className=" text-white">skills:</span>
-                <span className="text-gray-400">{`['`}</span>
-                <span className="text-amber-300">React</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Node</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Express</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">MongoDB</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">MySQL</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Tailwind</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Git</span>
-                <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">WordPress</span>
-                <span className="text-gray-400">{"'],"}</span>
-              </div>
-              <div>
-                <span className="ml-4 lg:ml-8 mr-2 text-white">hardWorker:</span>
-                <span className="text-orange-400">true</span>
-                <span className="text-gray-400">,</span>
-              </div>
-              <div>
-                <span className="ml-4 lg:ml-8 mr-2 text-white">quickLearner:</span>
-                <span className="text-orange-400">true</span>
-                <span className="text-gray-400">,</span>
-              </div>
-              <div>
-                <span className="ml-4 lg:ml-8 mr-2 text-white">problemSolver:</span>
-                <span className="text-orange-400">true</span>
-                <span className="text-gray-400">,</span>
-              </div>
-              <div>
-                <span className="ml-4 lg:ml-8 mr-2 text-green-400">hireable:</span>
-                <span className="text-orange-400">function</span>
-                <span className="text-gray-400">{'() {'}</span>
-              </div>
-              <div>
-                <span className="ml-8 lg:ml-16 mr-2 text-orange-400">return</span>
-                <span className="text-gray-400">{`(`}</span>
-              </div>
-              <div>
-                <span className="ml-12 lg:ml-24 text-cyan-400">this.</span>
-                <span className="mr-2 text-white">hardWorker</span>
-                <span className="text-amber-300">&amp;&amp;</span>
-              </div>
-              <div>
-                <span className="ml-12 lg:ml-24 text-cyan-400">this.</span>
-                <span className="mr-2 text-white">problemSolver</span>
-                <span className="text-amber-300">&amp;&amp;</span>
-              </div>
-              <div>
-                <span className="ml-12 lg:ml-24 text-cyan-400">this.</span>
-                <span className="mr-2 text-white">skills.length</span>
-                <span className="mr-2 text-amber-300">&gt;=</span>
-                <span className="text-orange-400">5</span>
-              </div>
-              <div><span className="ml-8 lg:ml-16 mr-2 text-gray-400">{`);`}</span></div>
-              <div><span className="ml-4 lg:ml-8 text-gray-400">{`};`}</span></div>
-              <div><span className="text-gray-400">{`};`}</span></div>
-            </code>
+
+            {/* Right Profile Column */}
+            <div className="lg:col-span-5 order-1 lg:order-2">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="relative"
+              >
+                <div className="relative z-10 w-full aspect-[4/5] p-[2.5px] rounded-[40px] overflow-hidden shadow-2xl group">
+                  {/* Rotating Animated Border */}
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_45deg,#ec4899_90deg,transparent_135deg,transparent_180deg,transparent_225deg,#8b5cf6_270deg,transparent_315deg,transparent_360deg)] opacity-60"
+                  />
+
+                  {/* Inner Content Container */}
+                  <div className="relative z-10 w-full h-full rounded-[38px] overflow-hidden bg-[#0d1224]">
+                    <Image
+                      src={personalData.profile}
+                      fill
+                      alt={personalData.name}
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      priority
+                    />
+                  </div>
+                </div>
+
+                {/* Aesthetic Floating Box - Simplified */}
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-pink-500/20 rounded-[32px] -z-10 blur-xl" />
+              </motion.div>
+            </div>
+
           </div>
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default HeroSection;
