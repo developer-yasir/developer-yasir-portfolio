@@ -30,7 +30,7 @@ export default function Appointment({ texts, speed = 100, pause = 1500 }) {
     }, [displayedText, isDeleting, currentTextIndex, texts, speed, pause]);
 
     return (
-        <span className="text-[#16f2b3]">
+        <span className="text-[cyan-400]">
             {displayedText}
             <span className="animate-pulse">|</span>
         </span>

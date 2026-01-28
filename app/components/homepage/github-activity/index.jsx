@@ -21,7 +21,7 @@ function GitHubActivity() {
                     username={personalData.devUsername}
                     blockSize={15}
                     blockMargin={5}
-                    color="#16f2b3"
+                    color="cyan-400"
                     fontSize={16}
                 />
             </div>

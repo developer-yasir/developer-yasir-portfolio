@@ -9,6 +9,8 @@ import Projects from "./components/homepage/projects";
 import Skills from "./components/homepage/skills";
 import GitHubActivity from "./components/homepage/github-activity";
 
+import Services from "./components/homepage/services";
+
 async function getData() {
   const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`, {
     headers: {
@@ -22,7 +24,7 @@ async function getData() {
 
   const data = await res.json();
 
-  const filtered = data.filter((item) => item?.cover_image).sort(() => Math.random() - 0.5);
+  const filtered = data.filter((item) => item?.cover_image || item?.social_image);
 
   return filtered;
 };
@@ -38,6 +40,7 @@ export default async function Home() {
       <Skills />
       <Projects />
       <GitHubActivity />
+      <Services />
       <Education />
       <Blog blogs={blogs} />
       <ContactSection />
