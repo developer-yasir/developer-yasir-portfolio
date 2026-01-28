@@ -28,7 +28,7 @@ function HeroSection() {
             Hello, <br />
             This is {' '}
             <span className=" text-pink-500">{personalData.name}</span>
-            {` , I'm a.. `}
+            {` , I'm `}
             <TypingAnimation texts={["MERN Stack Developer", "Software Engineer", "Problem Solver"]} />
             .
           </h1>
