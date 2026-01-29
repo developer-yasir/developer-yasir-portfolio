@@ -30,8 +30,8 @@ A professional portfolio template built with **Next.js 16**, **React 19**, and *
 
 ## Demo :movie_camera:
 
-<p align="center">
-  <img src="./public/image/screen.png" alt="Portfolio Screenshot" width="100%">
+<p align="center">  
+<img alt="Portfolio Screenshot" width="100%" src="https://github.com/user-attachments/assets/1e4c971d-b413-4907-a776-49da6b3dc245" />
 </p>
 
 <p align="center">
