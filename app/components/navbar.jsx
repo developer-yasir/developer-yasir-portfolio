@@ -50,11 +50,6 @@ function Navbar() {
                 EDUCATION
               </Link>
             </li>
-            <li>
-              <Link className="block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 text-white hover:text-[#16f2b3]" href="/blog">
-                BLOGS
-              </Link>
-            </li>
           </ul>
         </div>
 
