@@ -1,6 +1,7 @@
 // @flow strict
 
 import { personalData } from "@/utils/data/personal-data";
+import Footer from "../components/footer";
 import BlogCard from "../components/homepage/blog/blog-card";
 
 async function getBlogs() {
@@ -41,6 +42,7 @@ async function page() {
           ))
         }
       </div>
+      <Footer />
     </div>
   );
 };
