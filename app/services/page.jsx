@@ -6,7 +6,6 @@ import { FaDatabase, FaLayerGroup, FaWordpress, FaArrowRight } from "react-icons
 import GlowCard from "../components/helper/glow-card";
 import Image from "next/image";
 import Link from "next/link";
-import Footer from "../components/footer";
 
 const services = [
     {
@@ -163,7 +162,6 @@ function ServicesPage() {
                     </motion.div>
                 </div>
             </main>
-            <Footer />
         </div>
     );
 }

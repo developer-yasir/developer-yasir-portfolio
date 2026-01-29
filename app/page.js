@@ -4,7 +4,6 @@ import Blog from "./components/homepage/blog";
 import ContactSection from "./components/homepage/contact";
 import Education from "./components/homepage/education";
 import Experience from "./components/homepage/experience";
-import Footer from "./components/footer";
 import HeroSection from "./components/homepage/hero-section";
 import Projects from "./components/homepage/projects";
 import Skills from "./components/homepage/skills";
@@ -25,7 +24,6 @@ export default function Home() {
       <Education />
       <Blog />
       <ContactSection />
-      <Footer />
     </div>
   )
 };
