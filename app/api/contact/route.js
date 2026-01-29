@@ -71,36 +71,76 @@ export async function POST(request) {
   try {
     const payload = await request.json();
     const { name, email, message: userMessage } = payload;
-    const token = process.env.TELEGRAM_BOT_TOKEN;
-    const chat_id = process.env.TELEGRAM_CHAT_ID;
 
-    // Validate environment variables
-    if (!token || !chat_id) {
+    // Validate required fields
+    if (!name || !email || !userMessage) {
       return NextResponse.json({
         success: false,
-        message: 'Telegram token or chat ID is missing.',
+        message: 'Missing required fields: name, email, or message.',
       }, { status: 400 });
+    }
+
+    const token = process.env.TELEGRAM_BOT_TOKEN;
+    const chat_id = process.env.TELEGRAM_CHAT_ID;
+    const email_address = process.env.EMAIL_ADDRESS;
+    const gmail_passkey = process.env.GMAIL_PASSKEY;
+
+    // Check if email credentials are provided
+    const emailConfigured = email_address && gmail_passkey;
+
+    // Check if Telegram is configured
+    const telegramConfigured = token && chat_id;
+
+    // If neither email nor Telegram is configured, return an error
+    if (!emailConfigured && !telegramConfigured) {
+      return NextResponse.json({
+        success: false,
+        message: 'Contact form is not properly configured. Missing EMAIL_ADDRESS/GMAIL_PASSKEY or TELEGRAM_BOT_TOKEN/CHAT_ID.',
+      }, { status: 500 });
     }
 
     const message = `New message from ${name}\n\nEmail: ${email}\n\nMessage:\n\n${userMessage}\n\n`;
 
-    // Send Telegram message
-    const telegramSuccess = await sendTelegramMessage(token, chat_id, message);
-
-    // Send email
-    const emailSuccess = await sendEmail(payload, message);
-
-    if (telegramSuccess && emailSuccess) {
-      return NextResponse.json({
-        success: true,
-        message: 'Message and email sent successfully!',
-      }, { status: 200 });
+    // Send Telegram message if configured
+    let telegramSuccess = true; // Assume success if not configured
+    if (telegramConfigured) {
+      telegramSuccess = await sendTelegramMessage(token, chat_id, message);
     }
 
-    return NextResponse.json({
-      success: false,
-      message: 'Failed to send message or email.',
-    }, { status: 500 });
+    // Send email if configured
+    let emailSuccess = true; // Assume success if not configured
+    if (emailConfigured) {
+      emailSuccess = await sendEmail(payload, message);
+    }
+
+    // Determine overall success based on what's configured
+    const overallSuccess = telegramConfigured ? telegramSuccess : true;
+    const emailOverallSuccess = emailConfigured ? emailSuccess : true;
+
+    if (overallSuccess && emailOverallSuccess) {
+      return NextResponse.json({
+        success: true,
+        message: 'Message sent successfully!',
+      }, { status: 200 });
+    } else {
+      // At least one service failed
+      let errorMessage = 'Failed to send message';
+      if (telegramConfigured && !telegramSuccess) {
+        errorMessage += ' via Telegram';
+      }
+      if (emailConfigured && !emailSuccess) {
+        if (telegramConfigured && !telegramSuccess) {
+          errorMessage += ' and';
+        }
+        errorMessage += ' via email';
+      }
+      errorMessage += '.';
+
+      return NextResponse.json({
+        success: false,
+        message: errorMessage,
+      }, { status: 500 });
+    }
   } catch (error) {
     console.error('API Error:', error.message);
     return NextResponse.json({
